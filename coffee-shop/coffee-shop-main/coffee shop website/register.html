@@ -1,0 +1,114 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Sign Up</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('./istockphoto-1303583671-612x612.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .container {
+        max-width: 400px;
+        margin: 130px auto;
+        padding: 20px;
+        background-color:rgba(189, 111, 111, 0.247);
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    input[type="text"],
+    input[type="email"],
+    input[type="password"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #c3cac3;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #4b554b;
+    }
+    .error {
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Sign Up</h2>
+    <form id="signupForm" action="login.html">
+        <input type="text" id="fullname" placeholder="Full Name">
+        <input type="email" id="email" placeholder="Email">
+        <input type="password" id="password" placeholder="Password">
+        <input type="password" id="confirmPassword" placeholder="Confirm Password">
+        <input type="submit" value="Sign Up">
+        <p>GO TO LOGIN ?<a href="login.html">LOGIN</a></p>
+    </form>
+    <p id="error-msg" class="error"></p>
+</div>
+
+<script>
+    document.getElementById('signupForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        
+        // Fetch input values
+        var fullname = document.getElementById('fullname').value;
+        var email = document.getElementById('email').value;
+        var password = document.getElementById('password').value;
+        var confirmPassword = document.getElementById('confirmPassword').value;
+
+        // Validation
+        if(fullname.trim() === '') {
+            showError('Full Name is required');
+            return;
+        }
+        if(email.trim() === '') {
+            showError('Email is required');
+            return;
+        }
+        if(!isValidEmail(email)) {
+            showError('Invalid email format');
+            return;
+        }
+        if(password.trim() === '') {
+            showError('Password is required');
+            return;
+        }
+        if(password !== confirmPassword) {
+            showError('Passwords do not match');
+            return;
+        }
+
+        // If validation passes, you can proceed with form submission or other actions
+        // For simplicity, let's just show a success message
+        alert('Sign Up successful!');
+    });
+
+    function showError(message) {
+        document.getElementById('error-msg').textContent = message;
+    }
+
+    function isValidEmail(email) {
+        // Basic email validation using regex
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+</script>
+
+</body>
+</html>

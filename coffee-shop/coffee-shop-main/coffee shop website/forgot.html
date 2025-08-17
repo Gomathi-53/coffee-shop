@@ -1,0 +1,94 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+<meta charset="UTF-8">
+<meta name="viewport" content="width=device-width, initial-scale=1.0">
+<title>Forgot Password</title>
+<style>
+    body {
+        font-family: Arial, sans-serif;
+        background-image: url('./card7.jpg');
+        background-repeat: no-repeat;
+        background-size: cover;
+    }
+    .container {
+        max-width: 400px;
+        margin: 50px auto;
+        padding: 20px;
+        background-color: #aca6a6;
+        border-radius: 5px;
+        box-shadow: 0px 0px 10px rgba(0, 0, 0, 0.1);
+    }
+    h2 {
+        text-align: center;
+        margin-bottom: 20px;
+    }
+    input[type="email"],
+    input[type="submit"] {
+        width: 100%;
+        padding: 10px;
+        margin-bottom: 15px;
+        border: 1px solid #ccc;
+        border-radius: 3px;
+        box-sizing: border-box;
+    }
+    input[type="submit"] {
+        background-color: #3a3b3a;
+        color: white;
+        cursor: pointer;
+    }
+    input[type="submit"]:hover {
+        background-color: #b4b9b5;
+    }
+    .error {
+        color: red;
+    }
+</style>
+</head>
+<body>
+
+<div class="container">
+    <h2>Forgot Password</h2>
+    <form id="forgotPasswordForm">
+        <input type="email" id="email" placeholder="Email">
+        <input type="submit" value="Reset Password">
+        <p>Go to login page ?<a href="login.html">LOGIN</a></p>
+    </form>
+    <p id="error-msg" class="error"></p>
+</div>
+
+<script>
+    document.getElementById('forgotPasswordForm').addEventListener('submit', function(event) {
+        event.preventDefault(); // Prevent form submission
+        
+        // Fetch input values
+        var email = document.getElementById('email').value;
+
+        // Validation
+        if(email.trim() === '') {
+            showError('Email is required');
+            return;
+        }
+        if(!isValidEmail(email)) {
+            showError('Invalid email format');
+            return;
+        }
+
+        // If validation passes, you can proceed with form submission or other actions
+        // For simplicity, let's just show a success message
+        alert('Password reset instructions sent to your email!');
+    });
+
+    function showError(message) {
+        document.getElementById('error-msg').textContent = message;
+    }
+
+    function isValidEmail(email) {
+        // Basic email validation using regex
+        var emailRegex = /^[^\s@]+@[^\s@]+\.[^\s@]+$/;
+        return emailRegex.test(email);
+    }
+</script>
+
+</body>
+</html>
